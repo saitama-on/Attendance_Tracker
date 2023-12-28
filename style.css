@@ -1,0 +1,70 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  /* Container for buttons */
+  div > button {
+    margin: 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  div > button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Subjects container */
+  .subjects {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  /* Subject box styles */
+  .sub {
+    margin-bottom: 15px;
+  }
+  
+  /* Subject text styles */
+  .sub > span {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  /* Increment and decrement buttons */
+  .inc,
+  .dec {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .inc {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .dec {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  /* Hover effect on increment and decrement buttons */
+  .inc:hover,
+  .dec:hover {
+    filter: brightness(110%);
+  }
+  
