@@ -5,6 +5,19 @@ body {
     padding: 0;
     background-color: #f4f4f4;
   }
+
+.edit_bttn{
+
+  margin-left: 100vh;
+}
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh; /* Adjust this if needed */
+  }
+  
   
   /* Container for buttons */
   div > button {
