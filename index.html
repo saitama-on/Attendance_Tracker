@@ -4,28 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">    -->
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="style.css">
     <title>Signup</title>
 </head>
 <body>
-  
-  <nav class="navbar bg-body-tertiaryclass= bg-primary" data-bs-theme="dark">
+  <div id="login_container">
+  <div class="container" >
+    <div class="card text-center border-warning mb-3" >
+        <div class="card-header" ><h3>Login with College email Id</h3></div>
+        <div class="card-body">
+            <button type="submit" id="login" class="btn btn-success btn-sm" style="width:100%; height:100%;"><h1>Login</h1></button>
+        </div>
+    </div>
+</div>
+</div>
+
+  <nav class="navbar bg-body-tertiaryclass= bg-primary" data-bs-theme="dark" >
     <div class="container-fluid">
       
         <img id="logo" src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        <button class="btn btn-danger btn-sm"id="logout" >Logout</button>
-        <button type="submit" id="login" class="btn btn-success btn-sm" >Login</button>
+        <button class="btn btn-danger btn-sm"id="logout" style="width:10vh;">Logout</button>
+        
         <a class="navbar-brand" value="Name of User"></a>
       
     </div>
   </nav>
+  
         
-        
-        <button class="btn btn-outline-primary btn-sm"id="edit_btn">edit</button> 
-        <button class="btn btn-success btn-sm"id="edit_done_btn">done</button>
-        <button class="btn btn-dark btn-sm"id="cancel">cancel</button>
 
-        <div class="container">
-        <div class="card" style="width: 50rem;">
+        <div class="container" id="main_container">
+      <div class="card" id="main_card">
 
         <div class="sub accordion" id="div_sub1" >
           <div class="accordion-item">
@@ -33,9 +43,14 @@
             Calculus
           </button> 
           <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="div_sub1">
-            <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub1"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub1">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub1">-</button></strong>
-            <span class="edit_bttn"><button class="btn btn-outline-primary btn-sm"id="edit_btn">edit</button> </span>
+            <div class="accordion-body position-relative">
+            <strong> Classes missed :   <span id="sub1"></span></strong>
+              <button class="inc btn btn-outline-success "  id="increment_sub1">+</button>
+              <span id="date_fields_sub1" class="date_fields">
+              <input type="date" id="date_input_sub1" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub1">Add</button>
+              </span>
+              <div id="sub1_data">
+              </div>             
             </div>
           </div>
           </div>
@@ -48,7 +63,12 @@
           </button> 
           <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="div_sub2">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub2"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub2">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub2">-</button></strong>
+            <strong> Classes missed :   <span id="sub2"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub2">+</button></strong>
+            <span id="date_fields_sub2">
+            <input type="date" id="date_input_sub2" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub2">Add</button>
+            </span>
+            <div id="sub2_data">
+            </div>
             </div>
           </div>
           </div>
@@ -57,11 +77,16 @@
         <div class="sub accordion" id="div_sub3" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-            Oops
+            Signal and Systems
           </button> 
           <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="div_sub3">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub3"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub3">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub3">-</button></strong>
+            <strong> Classes missed :   <span id="sub3"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub3">+</button></strong>
+            <span id="date_fields_sub3">
+              <input type="date" id="date_input_sub3" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub3">Add</button>
+              </span>
+              <div id="sub3_data">
+              </div>
             </div>
           </div>
           </div>
@@ -74,7 +99,12 @@
           </button> 
           <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="div_sub4">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub4"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub4">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub4">-</button></strong>
+            <strong> Classes missed :   <span id="sub4"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub4">+</button></strong>
+            <span id="date_fields_sub4">
+              <input type="date" id="date_input_sub4" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub4">Add</button>
+              </span>
+              <div id="sub4_data">
+              </div>
             </div>
           </div>
           </div>
@@ -87,7 +117,12 @@
           </button> 
           <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="div_sub5">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub5"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub5">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub5">-</button></strong>
+            <strong> Classes missed :   <span id="sub5"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub5">+</button></strong>
+            <span id="date_fields_sub5">
+              <input type="date" id="date_input_sub5" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub5">Add</button>
+              </span>
+              <div id="sub5_data">
+              </div>
             </div>
           </div>
           </div>
@@ -96,11 +131,16 @@
         <div class="sub accordion" id="div_sub6" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-            Sub 6
+            IOT
           </button> 
           <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="div_sub6">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub6"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub6">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub6">-</button></strong>
+            <strong> Classes missed :   <span id="sub6"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub6">+</button></strong>
+            <span id="date_fields_sub6">
+              <input type="date" id="date_input_sub6" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub6">Add</button>
+              </span>
+              <div id="sub6_data">
+              </div>
             </div>
           </div>
           </div>
@@ -109,11 +149,16 @@
         <div class="sub accordion" id="div_sub7" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
-            Sub 7
+            Wealth Management
           </button> 
           <div id="collapse7" class="accordion-collapse collapse" data-bs-parent="div_sub7">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub7"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub7">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub7">-</button></strong>
+            <strong> Classes missed :   <span id="sub7"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub7">+</button></strong>
+            <span id="date_fields_sub7">
+              <input type="date" id="date_input_sub7" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub7">Add</button>
+              </span>
+              <div id="sub7_data">
+              </div>
             </div>
           </div>
           </div>
@@ -122,11 +167,16 @@
         <div class="sub accordion" id="div_sub8" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-            Sub 8
+            Optimization Techniques
           </button> 
           <div id="collapse8" class="accordion-collapse collapse" data-bs-parent="div_sub8">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub8"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub8">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub8">-</button></strong>
+            <strong> Classes missed :   <span id="sub8"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub8">+</button></strong>
+            <span id="date_fields_sub8">
+              <input type="date" id="date_input_sub8" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub8">Add</button>
+              </span>
+              <div id="sub8_data">
+              </div>
             </div>
           </div>
           </div>
@@ -135,11 +185,16 @@
         <div class="sub accordion" id="div_sub9" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-            Sub 9
+            3D Printing
           </button> 
           <div id="collapse9" class="accordion-collapse collapse" data-bs-parent="div_sub9">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub9"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub9">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub9">-</button></strong>
+            <strong> Classes missed :   <span id="sub9"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub9">+</button></strong>
+            <span id="date_fields_sub9">
+              <input type="date" id="date_input_sub9" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub9">Add</button>
+              </span>
+              <div id="sub9_data">
+              </div>
             </div>
           </div>
           </div>
@@ -148,11 +203,16 @@
         <div class="sub accordion" id="div_sub10" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-            Sub 10
+            Design and Prototyping
           </button> 
           <div id="collapse10" class="accordion-collapse collapse" data-bs-parent="div_sub3">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub10"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub10">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub10">-</button></strong>
+            <strong> Classes missed :   <span id="sub10"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub10">+</button></strong>
+            <span id="date_fields_sub10">
+              <input type="date" id="date_input_sub10" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub10">Add</button>
+              </span>
+              <div id="sub10_data">
+              </div>
             </div>
           </div>
           </div>
@@ -161,11 +221,16 @@
         <div class="sub accordion" id="div_sub11" >
           <div class="accordion-item">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-            Sub 11
+            Object Oriented Programming
           </button> 
           <div id="collapse11" class="accordion-collapse collapse" data-bs-parent="div_sub11">
             <div class="accordion-body">
-            <strong> Classes missed :  <span id="sub11"></span><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub11">+</button><button class="dec btn btn-outline-success btn-sm" id="decrement_sub11">-</button></strong>
+            <strong> Classes missed :   <h2><span id="sub11"></span></h2><button class="inc btn btn-outline-success btn-sm" class="btn btn-success" id="increment_sub11">+</button></strong>
+            <span id="date_fields_sub11">
+              <input type="date" id="date_input_sub11" class="date_input" > <button class="btn btn-primary btn-sm ok" id="ok_date_sub11">Add</button>
+              </span>
+              <div id="sub11_data">
+              </div>
             </div>
           </div>
           </div>
@@ -191,6 +256,7 @@
   <script type="module" src="dist/output.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+ 
   
 
   

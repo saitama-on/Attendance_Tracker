@@ -20,8 +20,10 @@ const db = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const login_btn = document.getElementById("login");
 const logout_btn = document.getElementById("logout");
-const div_sub1 = document.getElementById("div_sub1");
-const div_sub2 = document.getElementById("div_sub2");
+//const div_sub1 = document.getElementById("div_sub1");
+//const div_sub2 = document.getElementById("div_sub2");
+//let sub1_date_data = document.getElementById("sub1_data");
+
 
 
 login_btn.style.display = "none";
@@ -30,60 +32,39 @@ $(".sub").hide();
 $("#edit_btn").hide();
 $("#edit_done_btn").hide();
 $("#cancel").hide();
-$(".inc").hide()
-$(".dec").hide()
-let before_edit_sub1 = 0;
-let before_edit_sub2 =0;
-let before_edit_sub3 =0;
-let before_edit_sub4 = 0;
-let before_edit_sub5 =0;
-let before_edit_sub6 =0;
-let before_edit_sub7 = 0;
-let before_edit_sub8 =0;
-let before_edit_sub9 =0;
-let before_edit_sub10 = 0;
-let before_edit_sub11 =0;
+$("#date_fields_sub1").hide();
+$("#date_fields_sub2").hide();
+$("#date_fields_sub3").hide();
+$("#date_fields_sub4").hide();
+$("#date_fields_sub5").hide();
+$("#date_fields_sub6").hide();
+$("#date_fields_sub7").hide();
+$("#date_fields_sub8").hide();
+$("#date_fields_sub9").hide();
+$("#date_fields_sub10").hide();
+$("#date_fields_sub11").hide();
+$(".navbar").hide();
+$("#login_container").hide();
+//$(".inc").hide()
+//$(".dec").hide()
+
+// Set default date to todays date 
+let full_date = new Date();
+let month = parseInt(full_date.getMonth()+ 1).toString();
+if( month.length != 2 ){
+    month = '0'+month;
+}
+let date = full_date.getDate().toString();
+if( date.length != 2){
+    date = '0' + date;
+}
+var date_today = full_date.getFullYear() + "-" + month +  "-" + date;
+$(".date_input").val(date_today);
 
 
-
-
-
-$(window).on('load' , ()=>{
-    update(ref(db , "users/" + auth.currentUser.displayName) ,{
-        sub1: before_edit_sub1,
-        sub2: before_edit_sub2,
-        sub3: before_edit_sub3,
-        sub4: before_edit_sub4,
-        sub5: before_edit_sub5,
-        sub6: before_edit_sub6,
-        sub7: before_edit_sub7,
-        sub8: before_edit_sub8,
-        sub9: before_edit_sub9,
-        sub10: before_edit_sub10,
-        sub11: before_edit_sub11
-    } )
-})
-$("#cancel").click(()=>{
-    update(ref(db , "users/" + auth.currentUser.displayName) ,{
-        sub1: before_edit_sub1,
-        sub2: before_edit_sub2,
-        sub3: before_edit_sub3,
-        sub4: before_edit_sub4,
-        sub5: before_edit_sub5,
-        sub6: before_edit_sub6,
-        sub7: before_edit_sub7,
-        sub8: before_edit_sub8,
-        sub9: before_edit_sub9,
-        sub10: before_edit_sub10,
-        sub11: before_edit_sub11
-    } )
-    $("#cancel").hide();
-    $("#edit_done_btn").hide();
-    $("#edit_btn").prop("disabled" ,false);
-    hide_inc_dec();
-})
-// increment decrement functions
+// increment function
 function increment(some){
+
     const new_ref = ref(db , "users/" + auth.currentUser.displayName);
     let new_var;
     onValue(new_ref ,(snapshot)=> {
@@ -97,136 +78,239 @@ function increment(some){
 
 
 }
-function decrement(some){
-    const new_ref = ref(db , "users/" + auth.currentUser.displayName);
-    let new_var;
-    onValue(new_ref ,(snapshot)=> {
-        new_var = snapshot.val()[some]
-    })
 
-    new_var = new_var - 1;
-    if(new_var <0){
-        new_var=0;
-    }
-    update(new_ref , {
-        [some] : new_var
-    })
- 
+
+// load date data to respective div
+
+function load_date_data(some){
+
+    get(ref(db , "users/"  + auth.currentUser.displayName + "/date_data_" + some)).
+    then((snapshot)=>{
+        snapshot.forEach((promise)=>{
+            const new_element = document.createElement("p");
+            new_element.textContent = promise.val();
+            const cont  = document.getElementById(`${some}_data`)
+            cont.appendChild(new_element);
+        })})
+    
 }
+
+
+// click functions when ok is clicked
+$("#ok_date_sub1").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub1");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub1").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub1");
+    $("#sub1_data").empty();
+    load_date_data("sub1");
+    increment("sub1");
+    $("#date_fields_sub1").hide();
+    $("#increment_sub1").toggle();
+})
+$("#ok_date_sub2").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub2");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub2").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub2");
+    $("#sub2_data").empty();
+    load_date_data("sub2");
+    increment("sub2");
+    $("#date_fields_sub2").hide();
+    $("#increment_sub2").toggle();
+})
+$("#ok_date_sub3").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub3");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub3").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub3");
+    $("#sub3_data").empty();
+    load_date_data("sub3");
+    increment("sub3");
+    $("#date_fields_sub3").hide();
+    $("#increment_sub3").toggle();
+})
+$("#ok_date_sub4").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub4");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub4").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub4");
+    $("#sub4_data").empty();
+    load_date_data("sub4");
+    increment("sub4");
+    $("#date_fields_sub4").hide();
+    $("#increment_sub4").toggle();
+})
+$("#ok_date_sub5").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub5");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub5").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub5");
+    $("#sub5_data").empty();
+    load_date_data("sub5");
+    increment("sub5");
+    $("#date_fields_sub5").hide();
+    $("#increment_sub5").toggle();
+})
+$("#ok_date_sub6").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub6");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub6").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub6");
+    $("#sub6_data").empty();
+    load_date_data("sub6");
+    increment("sub6");
+    $("#date_fields_sub6").hide();
+    $("#increment_sub6").toggle();
+})
+$("#ok_date_sub7").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub7");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub7").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub7");
+    $("#sub7_data").empty();
+    load_date_data("sub7");
+    increment("sub7");
+    $("#date_fields_sub7").hide();
+    $("#increment_sub7").toggle();
+})
+$("#ok_date_sub8").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub8");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub8").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub8");
+    $("#sub8_data").empty();
+    load_date_data("sub8");
+    increment("sub8");
+    $("#date_fields_sub8").hide();
+    $("#increment_sub9").toggle();
+})
+$("#ok_date_sub9").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub9");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub9").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub9");
+    $("#sub9_data").empty();
+    load_date_data("sub9");
+    increment("sub9");
+    $("#date_fields_sub9").hide();
+})
+$("#ok_date_sub10").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub10");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub10").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub10");
+    $("#sub10_data").empty();
+    load_date_data("sub10");
+    increment("sub10");
+    $("#date_fields_sub10").hide();
+    $("#increment_sub10").toggle();
+})
+$("#ok_date_sub11").click(()=>{
+    const new_ref = ref(db , "users/" + auth.currentUser.displayName +"/date_data_sub11");
+    console.log(auth.currentUser.displayName);
+    push(new_ref , "You missed 1 class on : " + $("#date_input_sub11").val()).then((promise)=>{
+        console.log(promise);
+    });
+    //add_latest("sub11");
+    $("#sub11_data").empty();
+    load_date_data("sub11");
+    increment("sub11");
+    $("#date_fields_sub11").hide();
+    $("#increment_sub11").toggle();
+})
+
+
+
+
 //increment counters
+
 $("#increment_sub1").click(()=>{
-    increment("sub1")
+    //increment("sub1");
+    $("#increment_sub1").toggle();
+    $("#date_fields_sub1").show();
 })
 $("#increment_sub2").click(()=>{
-    increment("sub2")
+    //increment("sub2")
+    $("#date_fields_sub2").show();
+    $("#increment_sub2").toggle();
+
 })
 $("#increment_sub3").click(()=>{
-    increment("sub3")
+    //increment("sub3")
+    $("#date_fields_sub3").show();
+    $("#increment_sub3").toggle();
+    
 })
 $("#increment_sub4").click(()=>{
-    increment("sub4")
+    //increment("sub4")
+    $("#date_fields_sub4").show();
+    $("#increment_sub4").toggle();
 })
 $("#increment_sub5").click(()=>{
-    increment("sub5")
+    //increment("sub5")
+    $("#date_fields_sub5").show();
+    $("#increment_sub5").toggle();
+    
 })
 $("#increment_sub6").click(()=>{
-    increment("sub6")
+    //increment("sub1");
+    $("#date_fields_sub6").show();
+    $("#increment_sub6").toggle();
 })
 $("#increment_sub7").click(()=>{
-    increment("sub7")
+    //increment("sub2")
+    $("#date_fields_sub7").show();
+    $("#increment_sub7").toggle();
+
 })
 $("#increment_sub8").click(()=>{
-    increment("sub8")
+    //increment("sub3")
+    $("#date_fields_sub8").show();
+    $("#increment_sub8").toggle();
+    
 })
 $("#increment_sub9").click(()=>{
-    increment("sub9")
+    //increment("sub4")
+    $("#date_fields_sub9").show();
+    $("#increment_sub9").toggle();
 })
 $("#increment_sub10").click(()=>{
-    increment("sub10")
+    //increment("sub5")
+    $("#date_fields_sub10").show();
+    $("#increment_sub10").toggle();
+    
 })
 $("#increment_sub11").click(()=>{
-    increment("sub11")
+    //increment("sub5")
+    $("#date_fields_sub11").show();
+    $("#increment_sub11").toggle();
+    
 })
-// decrement counters
-$("#decrement_sub1").click(()=>{
-   decrement("sub1");
-})
-$("#decrement_sub2").click(()=>{
-    decrement("sub2");
- })
- $("#decrement_sub3").click(()=>{
-    decrement("sub3");
- })
- $("#decrement_sub4").click(()=>{
-    decrement("sub4");
- })
- $("#decrement_sub5").click(()=>{
-    decrement("sub5");
- })
- $("#decrement_sub6").click(()=>{
-    decrement("sub6");
- })
- $("#decrement_sub7").click(()=>{
-    decrement("sub7");
- })
- $("#decrement_sub8").click(()=>{
-    decrement("sub8");
- })
- $("#decrement_sub9").click(()=>{
-    decrement("sub9");
- })
- $("#decrement_sub10").click(()=>{
-    decrement("sub10");
- })
- $("#decrement_sub11").click(()=>{
-    decrement("sub11");
- })
- 
 
- 
- 
- function show_inc_dec(){
-     $(".inc").show()
-     $(".dec").show()   
-    }
+
     
-    function hide_inc_dec(){
-        $(".inc").hide();
-        $(".dec").hide();
-    }
-    
-    
-    
-    $("#edit_btn").click(()=>{
-        $("#edit_done_btn").show();
-        $("#cancel").show();
-        $("#edit_btn").prop("disabled",true);
-        show_inc_dec();
-        
-        get(ref(db , "users/"+auth.currentUser.displayName)).then((snapshot)=>{
-            before_edit_sub1 = snapshot.val().sub1;
-            before_edit_sub2 = snapshot.val().sub2;
-            before_edit_sub3 = snapshot.val().sub3;
-            before_edit_sub4 = snapshot.val().sub4;
-            before_edit_sub5 = snapshot.val().sub5;
-            before_edit_sub6 = snapshot.val().sub6;
-            before_edit_sub7 = snapshot.val().sub7;
-            before_edit_sub8 = snapshot.val().sub8;
-            before_edit_sub9 = snapshot.val().sub9;
-            before_edit_sub10 = snapshot.val().sub10;
-            before_edit_sub11 = snapshot.val().sub11;
-            
-        })
-        
-    })
-    
-    $("#edit_done_btn").click(()=>{
-        
-        $("#edit_done_btn").hide();
-        $("#edit_btn").prop("disabled",false);
-        $("#cancel").hide();
-        hide_inc_dec();
-    })
+   
     
     function user_loggedin(){
         
@@ -234,12 +318,37 @@ $("#decrement_sub2").click(()=>{
         login_btn.style.display = "none";
         $(".sub").show();
         $("#edit_btn").show();
+        $(".navbar").show();
+        $("#login_container").hide();
         $("#logo").attr('src' , auth.currentUser.photoURL);
         $(".navbar-brand").text(auth.currentUser.displayName);
+        $("#sub1_data").empty();
+        $("#sub2_data").empty();
+        $("#sub3_data").empty();
+        $("#sub4_data").empty();
+        $("#sub5_data").empty();
+        $("#sub6_data").empty();
+        $("#sub7_data").empty();
+        $("#sub8_data").empty();
+        $("#sub9_data").empty();
+        $("#sub10_data").empty();
+        $("#sub11_data").empty();
+        load_date_data("sub1");
+        load_date_data("sub2");
+        load_date_data("sub3");
+        load_date_data("sub4");
+        load_date_data("sub5");
+        load_date_data("sub6");
+        load_date_data("sub7");
+        load_date_data("sub8");
+        load_date_data("sub9");
+        load_date_data("sub10");
+        load_date_data("sub10");
         //console.log("hi", auth.currentUser.displayName)
         
         
         console.log(auth.currentUser);
+        console.log(localStorage);
     }
     
     function user_loggedout(){
@@ -248,9 +357,14 @@ $("#decrement_sub2").click(()=>{
     $(".sub").hide();
     $("#logo").hide();
     $(".a").hide();
-    $("#edit_btn").hide();
-    $("#logo").attr('src' , null);
-    $(".navbar-brand").text("User name");
+    //$("#edit_btn").hide();
+    //$("#logo").attr('src' , null);
+    //$(".navbar-brand").text("User name");
+    $(".navbar").hide();
+    $("#login_container").show();
+    console.log(localStorage);
+    localStorage.clear();
+    console.log(localStorage);
     
     }
 
@@ -260,6 +374,7 @@ onAuthStateChanged(auth , (user)=>{
         console.log("signined");
         
         user_loggedin();
+
         console.log(auth.currentUser.displayName);
 
 
@@ -295,9 +410,6 @@ onAuthStateChanged(auth , (user)=>{
     }
 })
 
-
-
-let user1;
 
 login_btn.addEventListener("click" , ()=>{
     console.log('clicked');

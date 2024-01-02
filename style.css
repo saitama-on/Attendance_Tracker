@@ -1,83 +1,138 @@
-/* Body styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-
-.edit_bttn{
-
-  margin-left: 100vh;
+.inc{
+  margin-left:10vh;
+  height:6vh;
+  width:10vh;
 }
 
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 10vh; /* Adjust this if needed */
+#main_container{
+  margin-left:40vh;
+  margin-top:10vh;
+  
+}
+
+#main_card{
+  width:40rem;
+}
+.date_input{
+  
+  width:30%;
+  margin-left:20px;
+  height:6vh;
+}
+
+@media screen and (max-width: 400px) {
+  
+
+  #login_container{
+
+    width:20rem;
+    margin-top:50%;
+    margin-left: 0px;
   }
   
-  
-  /* Container for buttons */
-  div > button {
-    margin: 5px;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
+   #main_container{
+    margin-left:4vh;
+    margin-top:2vh;
+    zoom:120%;
+  }
+  #main_card{
+    width:15rem;
+  }
+  .inc{
+    margin-left:2vh;
+    height:4vh;
+    width:4vh;
+  }
+}
+
+@media all and (min-width: 401px) and (max-width: 500px){
+
+  #login_container{
+
+    width:20rem;
+    margin-top:50%;
+    margin-left: 0px;
   }
   
-  div > button:hover {
-    background-color: #0056b3;
+  #main_container{
+   margin:1vh;
+   zoom:150%;
+ }
+ #main_card{
+   width:15rem;
+ }
+ .inc{
+   margin-left:2vh;
+   height:3vh;
+   width:4vh;
+ }
+}
+
+@media all and (min-width: 501px) and (max-width: 610px){
+
+  #login_container{
+
+    width:25rem;
+    margin-top:50%;
+    margin-left: 0px;
   }
-  
-  /* Subjects container */
-  .subjects {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+
+  #main_container{
+    margin:1vh;
+    zoom:150%;
   }
-  
-  /* Subject box styles */
-  .sub {
-    margin-bottom: 15px;
+  #main_card{
+    width:20rem;
   }
-  
-  /* Subject text styles */
-  .sub > span {
-    font-weight: bold;
-    margin-right: 10px;
+  .inc{
+    margin-left:2vh;
+    height:3vh;
+    width:4vh;
   }
-  
-  /* Increment and decrement buttons */
-  .inc,
-  .dec {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+
+}
+
+@media all and (min-width: 610px) and (max-width: 725px){
+
+  #login_container{
+
+    width:30rem;
+    margin-top:50%;
+    margin-left: 0px;
   }
-  
-  .inc {
-    background-color: #28a745;
-    color: #fff;
+
+  #main_container{
+    margin:2vh;
+    zoom:150%;
   }
-  
-  .dec {
-    background-color: #dc3545;
-    color: #fff;
+  #main_card{
+    width:25rem;
   }
-  
-  /* Hover effect on increment and decrement buttons */
-  .inc:hover,
-  .dec:hover {
-    filter: brightness(110%);
+  .inc{
+    margin-left:2vh;
+    height:3vh;
+    width:4vh;
   }
-  
+}
+@media all and (min-width: 726px) and (max-width: 850px){
+
+  #login_container{
+
+    width:35rem;
+    margin-top:50%;
+    margin-left: 0px;
+  }
+
+  #main_container{
+    margin:2vh;
+    zoom:150%;
+  }
+  #main_card{
+    width:30rem;
+  }
+  .inc{
+    margin-left:2vh;
+    height:3vh;
+    width:4vh;
+  }
+}
