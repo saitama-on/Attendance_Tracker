@@ -23,9 +23,9 @@
 @media screen and (max-width: 400px) {
   
 
-  #login_container{
+  .login_container{
 
-    width:20rem;
+    width:23rem;
     margin-top:50%;
     margin-left: 0px;
   }
@@ -47,11 +47,12 @@
 
 @media all and (min-width: 401px) and (max-width: 500px){
 
-  #login_container{
+  .login_container{
 
-    width:20rem;
+    width:24rem;
     margin-top:50%;
     margin-left: 0px;
+    height:40vh;
   }
   
   #main_container{
