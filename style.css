@@ -4,6 +4,85 @@
   width:10vh;
 }
 
+#sub1{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub2{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub3{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub4{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub5{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub6{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub7{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub8{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub9{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub10{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+#sub11{
+  color: rgb(81, 89, 86);
+  font-size:x-large;
+}
+
+#sub1_data {
+  color: rgba(0,0,0,.6);
+}
+#sub2_data {
+  color: rgba(0,0,0,.6);
+}
+#sub3_data {
+  color: rgba(0,0,0,.6);
+}
+#sub4_data {
+  color: rgba(0,0,0,.6);
+}
+#sub5_data {
+  color: rgba(0,0,0,.6);
+}
+#sub6_data {
+  color: rgba(0,0,0,.6);
+}
+#sub7_data {
+  color: rgba(0,0,0,.6);
+}
+#sub8_data {
+  color: rgba(0,0,0,.6);
+}
+#sub9_data {
+  color: rgba(0,0,0,.6);
+}
+#sub10_data {
+  color: rgba(0,0,0,.6);
+}
+#sub11_data {
+  color: rgba(0,0,0,.6);
+}
+
 #main_container{
   margin-left:40vh;
   margin-top:10vh;
