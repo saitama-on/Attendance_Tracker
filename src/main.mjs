@@ -180,6 +180,7 @@ function on_click_del(){
                         
                         load_date_data(this.name);
                         decrement(this.name);
+                        $(".delete_button").attr("disabled",false);
                     })
                     .catch((err)=>{
                         console.log(err);
