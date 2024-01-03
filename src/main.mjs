@@ -173,14 +173,14 @@ function on_click_del(){
                     new1 = this.value;
                     //console.log(new1);
                     //document.getElementById(this.id).setAttribute("disabled", true);
-                    $(".delete_button").attr("disabled" ,true);/*  */
+                    $(".delete_button").attr("disabled" ,true);
                     update(ref(db , "users/" + auth.currentUser.displayName + "/date_data_" + this.name  ) ,{
                         [new1]:null
                     }).then(()=>{
                         
                         load_date_data(this.name);
                         decrement(this.name);
-                        $(".delete_button").attr("disabled",false);
+                        $(".delete_button").attr("disabled",false); 
                     })
                     .catch((err)=>{
                         console.log(err);
