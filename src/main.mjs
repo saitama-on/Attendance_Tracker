@@ -45,6 +45,8 @@ $("#date_fields_sub10").hide();
 $("#date_fields_sub11").hide();
 $(".navbar").hide();
 $("#login_container").hide();
+$("#spinner").hide();
+
 //$(".inc").hide()
 //$(".dec").hide()
 
@@ -138,12 +140,14 @@ function load_date_data(some) {
 function on_click_del(){
     var items = document.getElementsByClassName("delete_button");
 
+
                 for(var i = items.length; i--;) {
                 let currentItem = items[i];
                 let new1 = "";
                 currentItem.onclick = function(e) {
                     new1 = this.value;
                     //console.log(new1);
+                    document.getElementById(this.id).setAttribute("disabled", true);/*  */
                     update(ref(db , "users/" + auth.currentUser.displayName + "/date_data_" + this.name  ) ,{
                         [new1]:null
                     }).then(()=>{
@@ -409,6 +413,7 @@ function user_loggedin() {
     load_date_data("sub9");
     load_date_data("sub10");
     load_date_data("sub11");
+    $("#spinner").hide();
     //console.log("hi", auth.currentUser.displayName)
 
 
@@ -427,19 +432,16 @@ function user_loggedout() {
     //$(".navbar-brand").text("User name");
     $(".navbar").hide();
     $(".login_container").show();
+    $("#spinner").hide()
 
 
 }
 
 onAuthStateChanged(auth, (user) => {
+
+    $("#spinner").show();
     if (user) {
-        // console.log(user.displayName);
-        //console.log("signined");
-
         user_loggedin();
-
-        //console.log(auth.currentUser.displayName);
-
 
         const db = getDatabase(app);
         const new_user = ref(db, "users/" + user.displayName);
@@ -541,4 +543,3 @@ logout_btn.addEventListener("click", () => {
 });
 
 //console.log(auth.currentUser);
-
