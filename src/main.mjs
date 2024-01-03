@@ -136,6 +136,31 @@ function load_date_data(some) {
 
 }
 
+// count the missed 
+
+function count(some){
+
+    let count_miss =0 ;
+    
+    get(ref(db , "users/"+ auth.currentUser.displayName + "/date_data_" + some)).then((snapshot)=>{
+        snapshot.forEach((promise)=>{
+            count_miss++;
+           // console.log(count_miss)
+        })
+        update(ref(db , "users/" + auth.currentUser.displayName) ,{
+            [some] : count_miss
+        })
+    })
+
+    // console.log(count_miss);
+
+    // update(ref(db , "users/" + auth.currentUser.displayName) ,{
+    //     [some] : count_miss
+    // })
+
+    console.log(count_miss);
+}
+
 // delete function
 function on_click_del(){
     var items = document.getElementsByClassName("delete_button");
@@ -147,7 +172,8 @@ function on_click_del(){
                 currentItem.onclick = function(e) {
                     new1 = this.value;
                     //console.log(new1);
-                    document.getElementById(this.id).setAttribute("disabled", true);/*  */
+                    //document.getElementById(this.id).setAttribute("disabled", true);
+                    $(".delete_button").attr("disabled" ,true);/*  */
                     update(ref(db , "users/" + auth.currentUser.displayName + "/date_data_" + this.name  ) ,{
                         [new1]:null
                     }).then(()=>{
@@ -174,7 +200,8 @@ $("#ok_date_sub1").click(() => {
     //add_latest("sub1");
     $("#sub1_data").empty();
     load_date_data("sub1");
-    increment("sub1");
+    //increment("sub1");
+    count("sub1");
     $("#date_fields_sub1").hide();
     $("#increment_sub1").toggle();
 })
@@ -187,7 +214,8 @@ $("#ok_date_sub2").click(() => {
     //add_latest("sub2");
     $("#sub2_data").empty();
     load_date_data("sub2");
-    increment("sub2");
+    //increment("sub2");
+    count("sub2");
     $("#date_fields_sub2").hide();
     $("#increment_sub2").toggle();
 })
@@ -200,7 +228,8 @@ $("#ok_date_sub3").click(() => {
     //add_latest("sub3");
     $("#sub3_data").empty();
     load_date_data("sub3");
-    increment("sub3");
+    //increment("sub3");
+    count("sub3");
     $("#date_fields_sub3").hide();
     $("#increment_sub3").toggle();
 })
@@ -213,7 +242,8 @@ $("#ok_date_sub4").click(() => {
     //add_latest("sub4");
     $("#sub4_data").empty();
     load_date_data("sub4");
-    increment("sub4");
+    count("sub4");
+    //increment("sub4");
     $("#date_fields_sub4").hide();
     $("#increment_sub4").toggle();
 })
@@ -226,7 +256,8 @@ $("#ok_date_sub5").click(() => {
     //add_latest("sub5");
     $("#sub5_data").empty();
     load_date_data("sub5");
-    increment("sub5");
+    //increment("sub5");
+    count("sub5");
     $("#date_fields_sub5").hide();
     $("#increment_sub5").toggle();
 })
@@ -239,7 +270,8 @@ $("#ok_date_sub6").click(() => {
     //add_latest("sub6");
     $("#sub6_data").empty();
     load_date_data("sub6");
-    increment("sub6");
+    //increment("sub6");
+    count("sub6");
     $("#date_fields_sub6").hide();
     $("#increment_sub6").toggle();
 })
@@ -252,7 +284,8 @@ $("#ok_date_sub7").click(() => {
     //add_latest("sub7");
     $("#sub7_data").empty();
     load_date_data("sub7");
-    increment("sub7");
+    //increment("sub7");
+    count("sub7")
     $("#date_fields_sub7").hide();
     $("#increment_sub7").toggle();
 })
@@ -265,7 +298,8 @@ $("#ok_date_sub8").click(() => {
     //add_latest("sub8");
     $("#sub8_data").empty();
     load_date_data("sub8");
-    increment("sub8");
+    //increment("sub8");
+    count("sub8");
     $("#date_fields_sub8").hide();
     $("#increment_sub8").toggle();
 })
@@ -278,7 +312,8 @@ $("#ok_date_sub9").click(() => {
     //add_latest("sub9");
     $("#sub9_data").empty();
     load_date_data("sub9");
-    increment("sub9");
+    //increment("sub9");
+    count("sub9");
     $("#date_fields_sub9").hide();
     $("#increment_sub9").toggle();
 })
@@ -291,7 +326,8 @@ $("#ok_date_sub10").click(() => {
     //add_latest("sub10");
     $("#sub10_data").empty();
     load_date_data("sub10");
-    increment("sub10");
+    //increment("sub10");
+    count("sub10");
     $("#date_fields_sub10").hide();
     $("#increment_sub10").toggle();
 })
@@ -304,7 +340,8 @@ $("#ok_date_sub11").click(() => {
     //add_latest("sub11");
     $("#sub11_data").empty();
     load_date_data("sub11");
-    increment("sub11");
+    //increment("sub11");
+    count("sub11");
     $("#date_fields_sub11").hide();
     $("#increment_sub11").toggle();
 })
