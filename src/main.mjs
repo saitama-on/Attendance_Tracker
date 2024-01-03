@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getDatabase, ref, push, query, limitToLast, set, get, onValue, onChildChanged, onChildAdded, update } from 'firebase/database';
+import { getDatabase, ref, push,remove, query, limitToLast, set, get, onValue, onChildChanged, onChildAdded, update } from 'firebase/database';
 
 
 const firebaseConfig = {
@@ -78,22 +78,85 @@ function increment(some) {
 
 
 }
+// decrement function
+function decrement(some) {
+
+    const new_ref = ref(db, "users/" + auth.currentUser.displayName);
+    let new_var;
+    onValue(new_ref, (snapshot) => {
+        new_var = snapshot.val()[some]
+    })
+
+    new_var = new_var - 1;
+    update(new_ref, {
+        [some]: new_var
+    })
+
+
+}
+
+
+
 
 
 // load date data to respective div
 
 function load_date_data(some) {
 
+    $("#"+ some + "_data").empty()
+
     get(ref(db, "users/" + auth.currentUser.displayName + "/date_data_" + some)).
         then((snapshot) => {
             snapshot.forEach((promise) => {
-                const new_element = document.createElement("p");
+                const new_element = document.createElement("span");
+                const del_button =  document.createElement("button");
+                del_button.setAttribute("class" , "delete_button");
+                del_button.setAttribute("id" , `${some}_del`);
+                del_button.setAttribute("value" , promise.key);
+                del_button.setAttribute("name" , some);
+                del_button.textContent = "DEL";
+                //del_button.textContent = "Del";
+                //const del = document.getElementById(`${some}_del`);
+                
                 new_element.textContent = promise.val();
                 const cont = document.getElementById(`${some}_data`)
                 cont.appendChild(new_element);
+                cont.appendChild(del_button);
+                cont.appendChild(document.createElement("br"));
+                on_click_del();
+                
+
+
+                //
+                
             })
         })
 
+}
+
+// delete function
+function on_click_del(){
+    var items = document.getElementsByClassName("delete_button");
+
+                for(var i = items.length; i--;) {
+                let currentItem = items[i];
+                let new1 = "";
+                currentItem.onclick = function(e) {
+                    new1 = this.value;
+                    //console.log(new1);
+                    update(ref(db , "users/" + auth.currentUser.displayName + "/date_data_" + this.name  ) ,{
+                        [new1]:null
+                    }).then(()=>{
+                        
+                        load_date_data(this.name);
+                        decrement(this.name);
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+                
+                };
+}
 }
 
 
@@ -200,7 +263,7 @@ $("#ok_date_sub8").click(() => {
     load_date_data("sub8");
     increment("sub8");
     $("#date_fields_sub8").hide();
-    $("#increment_sub9").toggle();
+    $("#increment_sub8").toggle();
 })
 $("#ok_date_sub9").click(() => {
     const new_ref = ref(db, "users/" + auth.currentUser.displayName + "/date_data_sub9");
@@ -213,6 +276,7 @@ $("#ok_date_sub9").click(() => {
     load_date_data("sub9");
     increment("sub9");
     $("#date_fields_sub9").hide();
+    $("#increment_sub9").toggle();
 })
 $("#ok_date_sub10").click(() => {
     const new_ref = ref(db, "users/" + auth.currentUser.displayName + "/date_data_sub10");
