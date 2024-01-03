@@ -45,7 +45,7 @@ $("#date_fields_sub10").hide();
 $("#date_fields_sub11").hide();
 $(".navbar").hide();
 $("#login_container").hide();
-$("#spinner").hide();
+
 
 //$(".inc").hide()
 //$(".dec").hide()
@@ -413,7 +413,7 @@ function user_loggedin() {
     load_date_data("sub9");
     load_date_data("sub10");
     load_date_data("sub11");
-    $("#spinner").hide();
+    
     //console.log("hi", auth.currentUser.displayName)
 
 
@@ -432,14 +432,14 @@ function user_loggedout() {
     //$(".navbar-brand").text("User name");
     $(".navbar").hide();
     $(".login_container").show();
-    $("#spinner").hide()
+    
 
 
 }
 
 onAuthStateChanged(auth, (user) => {
 
-    $("#spinner").show();
+   
     if (user) {
         user_loggedin();
 
